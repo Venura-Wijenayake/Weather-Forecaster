@@ -1,5 +1,5 @@
 {
-  "name": "mern-infrastructure",
+  "name": "Weather-Forecaster",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
