@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
+
 // import { Routes, Route } from 'react-router-dom';
-import { getUser } from "../../utilities/users-service";
-import "./App.css";
-import AuthPage from "../AuthPage/AuthPage";
-// import NewOrderPage from '../NewOrderPage/NewOrderPage';
-// import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 // import NavBar from "../../components/NavBar/NavBar";
+// import { get } from "mongoose";
+import "./App.css";
 import hotBg from "../../assets/hot.jpg";
 import coldBg from "../../assets/cold.jpg";
-import Descriptions from "../../components/Descriptions/Descriptions";
-// import { get } from "mongoose";
-import { getFormattedWeatherData } from "../../components/weatherService/weatherService";
+import AuthPage from "../AuthPage/AuthPage";
+import { getUser } from "../../utilities/users-service";
+import { useEffect, useState } from "react";
+
+import SearchBar from '../../components/SearchBar/SearchBar';
+import CurrentWeather, { getFormattedWeatherData } from '../../components/CurrentWeather/CurrentWeather';
+
 
 export default function App() {
   const [user, setUser] = useState(getUser());
-  const [city, setCity] = useState("Sacramento")
+  const [city, setCity] = useState("Rancho Cordova")
   const [weather, setWeather] = useState(null);
   const [units, setUnits] = useState("metric");
   const [bg, setBg] = useState(hotBg)
@@ -22,7 +23,11 @@ export default function App() {
   useEffect(() => {
     const fetchWeatherData = async () => {
       const data = await getFormattedWeatherData(city, units);
-      setWeather(data);
+      try {
+        setWeather(data);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+      }
       
 
       //dynamic bg
@@ -56,31 +61,13 @@ export default function App() {
     <main className="App" style={{ backgroundImage: `url(${bg})` }}>
       {user ? (
         <div className="overlay">
-          {weather && (
-            <div className="container">
-              <div className="section section__inputs">
-                <input onKeyDown={enterKeyPressed} type="text" name="city" placeholder="Enter City ..." />
-                <button onClick={(e) => handleUnitsClick(e)}>°F</button>
-              </div>
+          <div className="container">
+            <SearchBar enterKeyPressed={enterKeyPressed} handleUnitsClick={handleUnitsClick} />
 
-              <div className="section section__temperature">
-                <div className="icon">
-                  <h3>{`${weather.name}, ${weather.country}`}</h3>
-                  <img
-                    src={weather.iconURL}
-                    alt="weatherIcon"
-                  />
-                  <h3>{weather.description}</h3>
-                </div>
-                <div className="temperature">
-                  <h1>{`${weather.temp.toFixed(1)} °${units === 'metric' ? 'C' : "F"}`}</h1>
-                </div>
-              </div>
-
-              {/* .bottom description */}
-              <Descriptions weather={weather} units={units}/>
-            </div>
-          )}
+            {weather && (
+              <CurrentWeather weather={weather} units={units} />
+            )}
+          </div>
         </div>
       ) : (
         <AuthPage setUser={setUser} />
