@@ -9,9 +9,9 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <Link className='text-yellow-600' to="/orders">Order History</Link>
+      <Link to="/orders">Order History</Link>
       &nbsp; | &nbsp;
-      <Link className='text-yellow-600' to="/orders/new">New Order</Link>
+      <Link to="/orders/new">New Order</Link>
       &nbsp;&nbsp;
       <span>Welcome, {user.name}</span>
       &nbsp; | &nbsp;<Link className='text-yellow-600' to="" onClick={handleLogOut}>Log Out</Link>

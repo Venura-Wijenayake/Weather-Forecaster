@@ -7,7 +7,7 @@ export default function AuthPage({ setUser }) {
 
   return (
     <main className="bg-custom-grey w-3/4 h-1/2 flex flex-col justify-center items-center">
-      <h1 className="text-5xl mt-12 mb-4 text-cyan-600 "><bold><u>AuthPage</u></bold></h1>
+      <h1 className="text-5xl mt-12 mb-4 text-cyan-600 "><bold><u>Weather-AuthPage</u></bold></h1>
       <button
         onClick={() => setShowSignUp(!showSignUp)}
         className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
