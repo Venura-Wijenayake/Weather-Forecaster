@@ -1,75 +1,68 @@
-
-// import { Routes, Route } from 'react-router-dom';
-// import NavBar from "../../components/NavBar/NavBar";
-// import { get } from "mongoose";
 import "./App.css";
-import hotBg from "../../assets/hot.jpg";
-import coldBg from "../../assets/cold.jpg";
 import AuthPage from "../AuthPage/AuthPage";
 import { getUser } from "../../utilities/users-service";
 import { useEffect, useState } from "react";
 
-import SearchBar from '../../components/SearchBar/SearchBar';
-import CurrentWeather, { getFormattedWeatherData } from '../../components/CurrentWeather/CurrentWeather';
-import Time from "../../components/Time/Time";
-
+import TopButtons from "../../components/TopButtons/TopButtons";
+import Inputs from "../../components/Inputs/Inputs";
+import TimeAndLocation from "../../components/TimeAndLocation/TimeAndLocation";
+import TemperatureAndDetails from "../../components/TemperatureAndDetails/TemperatureAndDetails";
+import Forecast from "../../components/Forecast/Forecast";
+import getFormattedWeatherData from "../../services/weatherService";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
-  const [city, setCity] = useState("Rancho Cordova")
-  const [weather, setWeather] = useState(null);
+  const [query, setQuery] = useState({ q: "berlin" });
   const [units, setUnits] = useState("metric");
-  const [bg, setBg] = useState(hotBg)
+  const [weather, setWeather] = useState(null);
 
   useEffect(() => {
-    const fetchWeatherData = async () => {
-      const data = await getFormattedWeatherData(city, units);
-      try {
-        setWeather(data);
-      } catch (error) {
-        console.error("Error fetching weather data:", error);
-      }
-      
+    const fetchWeather = async () => {
+      const message = query.q ? query.q : "current location.";
 
-      //dynamic bg
-      const threshold = units === 'metric' ?20 : 68;
-      if(data.temp <= threshold) 
-        setBg(coldBg);
-      else 
-        setBg(hotBg);
+      toast.info("Fetching weather for " + message);
+
+      await getFormattedWeatherData({ ...query, units }).then((data) => {
+        toast.success(
+          `Successfully fetched weather for ${data.name}, ${data.country}.`
+        );
+
+        setWeather(data);
+      });
     };
 
-    fetchWeatherData();
-  }, [units, city]);
+    fetchWeather();
+  }, [query, units]);
 
-  const handleUnitsClick = (e) => {
-    const button = e.currentTarget;
-    const currentUnit = button.innerText.slice(1);
-    
-    const isCelsius = currentUnit === "C";
-    button.innerText = isCelsius ? "°F" : "°C";
-    setUnits(isCelsius ? "metric" : "imperial");
-  }
+  const formatBackground = () => {
+    if (!weather) return "from-cyan-700 to-blue-700";
+    const threshold = units === "metric" ? 22 : 68;
+    if (weather.temp <= threshold) return "from-cyan-700 to-blue-700";
 
-  const enterKeyPressed = (e) => {
-    if (e.keyCode === 13) {  //'Enter' Button pressed on Keyboard
-      setCity(e.currentTarget.value);
-      e.currentTarget.blur();
-    }
+    return "from-yellow-700 to-orange-700";
   };
 
   return (
-    <main className="App" style={{ backgroundImage: `url(${bg})` }}>
+    <main className="App">
       {user ? (
-        <div className="overlay">
-          <div className="container">
-            <SearchBar enterKeyPressed={enterKeyPressed} handleUnitsClick={handleUnitsClick} />
-            <Time />
+        <div
+          className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}
+        >
+          <TopButtons setQuery={setQuery} />
+          <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
 
-            {weather && (
-              <CurrentWeather weather={weather} units={units} />
-            )}
-          </div>
+          {weather && (
+            <div>
+              <TimeAndLocation weather={weather} />
+              <TemperatureAndDetails weather={weather} />
+
+              <Forecast title="hourly forecast" items={weather.hourly} />
+              <Forecast title="daily forecast" items={weather.daily} />
+            </div>
+          )}
+          <ToastContainer autoClose={2000} theme="colored" newestOnTop={true} />
         </div>
       ) : (
         <AuthPage setUser={setUser} />
