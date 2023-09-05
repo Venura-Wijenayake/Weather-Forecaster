@@ -75,7 +75,7 @@ import {
           <UilSun />
           <p className="font-light">
             High:{" "}
-            <span className="font-medium ml-1">{`${temp_max.toFixed(1)}°`}</span>
+            <span className="font-medium ml-1">{`${temp_max.toFixed()}°`}</span>
           </p>
           <p className="font-light">|</p>
   

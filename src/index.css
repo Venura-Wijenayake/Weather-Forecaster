@@ -5,6 +5,13 @@
 @tailwind utilities;
 
 
+/* custom.css */
+.bg-custom-image {
+    background-image: url('../public/icons/cloud.jpg');
+    background-size: cover;
+  }
+
+
 @layer base {
     html {
         font-family: 'Poppins', sans-serif;

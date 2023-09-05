@@ -4,7 +4,7 @@ import * as usersService from '../../utilities/users-service';
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
     email: '',
-    password: ''
+    password: '',
   });
   const [error, setError] = useState('');
 
@@ -14,12 +14,8 @@ export default function LoginForm({ setUser }) {
   }
 
   async function handleSubmit(evt) {
-    // Prevent form from being submitted to the server
     evt.preventDefault();
     try {
-      // The promise returned by the signUp service method 
-      // will resolve to the user object included in the
-      // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
       setUser(user);
     } catch {
@@ -28,17 +24,43 @@ export default function LoginForm({ setUser }) {
   }
 
   return (
-    <div>
+    <div className="min-h-screen flex justify-center items-center">
+      {/* Centered container */}
       <div className="form-container">
         <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-          <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-          <button type="submit">LOG IN</button>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-cyan-600">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value={credentials.email}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-400"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-cyan-600">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={credentials.password}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-400"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring focus:border-blue-400"
+          >
+            LOG IN
+          </button>
         </form>
+        {error && <p className="mt-4 text-red-500">{error}</p>}
       </div>
-      <p className="error-message">&nbsp;{error}</p>
     </div>
   );
 }

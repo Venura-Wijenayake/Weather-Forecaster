@@ -1,5 +1,6 @@
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
+import NavBar from '../../components/NavBar/NavBar';
 import { getUser } from "../../utilities/users-service";
 import { useEffect, useState } from "react";
 
@@ -45,11 +46,12 @@ export default function App() {
   };
 
   return (
-    <main className="App">
+    <main className="App bg-custom-image w-full flex justify-center items-center">
       {user ? (
         <div
           className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}
         >
+          <NavBar user={user} setUser={setUser} />
           <TopButtons setQuery={setQuery} />
           <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
 
