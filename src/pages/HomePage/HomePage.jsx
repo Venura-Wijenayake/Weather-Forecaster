@@ -12,7 +12,7 @@ import getFormattedWeatherData from "../../services/weatherService";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function NewOrderPage() {
+export default function HomePage() {
   const [user, setUser] = useState(getUser());
   const [query, setQuery] = useState({ q: "Sacramento" });
   const [units, setUnits] = useState("metric");

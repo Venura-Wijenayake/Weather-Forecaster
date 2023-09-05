@@ -2,7 +2,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import { getUser } from "../../utilities/users-service";
 import { useState } from "react";
 
-export default function OrderHistoryPage() {
+export default function TrackerTablePage() {
     const [user, setUser] = useState(getUser());
     
     const centered = {
