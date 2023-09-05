@@ -1,4 +1,5 @@
 const express = require('express');
+const request = require('request')
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -8,6 +9,12 @@ require('dotenv').config();
 require('./config/database');
 
 const app = express();
+
+//TEST!!!!
+app.set('view engine', 'ejs')
+
+var city = 'Las Vegas'
+var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=271d1234d3f497eed5b1d80a07b3fcd1`;
 
 app.use(logger('dev'));
 app.use(express.json());
