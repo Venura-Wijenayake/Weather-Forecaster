@@ -1,0 +1,27 @@
+.myInputStyles {
+  font-size: 1.25rem;
+  font-weight: 300;
+  padding: 0.5rem 0.75rem;
+  width: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+  text-transform: capitalize;
+}
+
+.myInputStyles::placeholder {
+  text-transform: lowercase;
+}
+
+.uil-search {
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.uil-search:hover {
+  transform: scale(1.25);
+}
+
+.searchButton {
+  background-color: blue;
+}

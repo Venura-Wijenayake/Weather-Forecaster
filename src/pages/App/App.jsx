@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 import SearchBar from '../../components/SearchBar/SearchBar';
 import CurrentWeather, { getFormattedWeatherData } from '../../components/CurrentWeather/CurrentWeather';
+import Time from "../../components/Time/Time";
 
 
 export default function App() {
@@ -63,6 +64,7 @@ export default function App() {
         <div className="overlay">
           <div className="container">
             <SearchBar enterKeyPressed={enterKeyPressed} handleUnitsClick={handleUnitsClick} />
+            <Time />
 
             {weather && (
               <CurrentWeather weather={weather} units={units} />
