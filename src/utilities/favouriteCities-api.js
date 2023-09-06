@@ -7,7 +7,7 @@ export function addFavouriteCity(name, temp) {
 }
 
 export function getFavoriteCities() {
-  return sendRequest(BASE_URL, "GET");
+  return sendRequest("/api/favouriteCities", "GET");
 }
 
 export async function deleteFavoriteCity(cityId) {

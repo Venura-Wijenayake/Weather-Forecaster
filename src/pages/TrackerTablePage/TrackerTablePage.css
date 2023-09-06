@@ -79,6 +79,9 @@
 }
 
 .favorite-city-item {
+  display: flex;
+  justify-content: space-between; /* Align items to the left and right */
+  align-items: center;
   margin-right: 8px;
   padding: 8px 16px;
   background-color: #2b8156; /* Button background color */
@@ -91,9 +94,10 @@
 }
 
 .delete-button {
-  background-color: #dc3545; /* Button background color for delete */
-  color: #fff; /* Button text color */
-  border: none;
+  background-color: #826F5D; /* Button background color for delete */
+  color: #000; /* Button text color */
+  border: 1px solid black; /* Border with aqua color */
+  border-radius: 4px;
   padding: 4px 8px;
   margin-left: 8px;
   border-radius: 4px;
@@ -102,5 +106,5 @@
 }
 
 .delete-button:hover {
-  background-color: #c82333; /* Hover background color */
+  background-color: #d9b99b; /* Hover background color */
 }

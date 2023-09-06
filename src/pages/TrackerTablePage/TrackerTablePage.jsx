@@ -3,7 +3,10 @@ import NavBar from "../../components/NavBar/NavBar";
 import AuthPage from "../AuthPage/AuthPage";
 import { getUser } from "../../utilities/users-service";
 import "./TrackerTablePage.css";
-import { getFavoriteCities, deleteFavoriteCity } from "../../utilities/favouriteCities-api";
+import {
+  getFavoriteCities,
+  deleteFavoriteCity,
+} from "../../utilities/favouriteCities-api";
 
 export default function TrackerTablePage() {
   const [user, setUser] = useState(getUser());
@@ -12,18 +15,21 @@ export default function TrackerTablePage() {
   useEffect(() => {
     // Fetch the favorite cities when the component mounts
     async function fetchFavoriteCities() {
-      const cities = await getFavoriteCities();
+      const cities = await getFavoriteCities(); // Remove user._id from here
       setFavoriteCities(cities);
     }
 
-    fetchFavoriteCities();
-  }, []);
+    // Check if the user is logged in before fetching favorite cities
+    if (user) {
+      fetchFavoriteCities();
+    }
+  }, [user]);
 
   const handleDeleteCity = async (cityId) => {
     // Delete the city and update the state
     await deleteFavoriteCity(cityId);
     // Fetch the updated list of favorite cities and update the state again
-    const updatedCities = await getFavoriteCities();
+    const updatedCities = await getFavoriteCities(user._id); // Pass the user's ID
     setFavoriteCities(updatedCities);
   };
 
@@ -38,17 +44,23 @@ export default function TrackerTablePage() {
           <div>
             <h2>Favorite Cities</h2>
             <ul>
-              {favoriteCities.map((city) => (
-                <li key={city._id} className="favorite-city-item">
-                  {city.name} - {city.temp}°
-                  <button
-                    className="delete-button"
-                    onClick={() => handleDeleteCity(city._id)}
-                  >
-                    Delete
-                  </button>
-                </li>
-              ))}
+              {favoriteCities.map((city) =>
+                // Check if the city belongs to the logged-in user
+                city.user === user._id ? (
+                  <li key={city._id} className="favorite-city-item">
+                    {city.name} - {city.temp}°
+                    <div className="delete-button-container">
+                      <button
+                        className="delete-button"
+                        onClick={() => handleDeleteCity(city._id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </li>
+                ) : // Don't render the item if it doesn't belong to the user
+                null
+              )}
             </ul>
           </div>
         </div>

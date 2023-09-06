@@ -8,9 +8,6 @@ module.exports = {
 
 async function create(req, res) {
   try {
-    // Add the FavouriteCity to the db
-    console.log("Favourite City Create function");
-    console.log(req.body);
 
     const favouriteCity = new FavouriteCity();
     favouriteCity.user = req.user._id;
