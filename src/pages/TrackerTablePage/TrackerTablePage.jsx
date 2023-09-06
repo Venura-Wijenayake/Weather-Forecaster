@@ -23,6 +23,7 @@ export default function TrackerTablePage() {
     if (user) {
       fetchFavoriteCities();
     }
+
   }, [user]);
 
   const handleDeleteCity = async (cityId) => {
@@ -40,7 +41,6 @@ export default function TrackerTablePage() {
           className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-gray-200 to-yellow-500 h-fit shadow-xl shadow-gray-400 `}
         >
           <NavBar user={user} setUser={setUser} />
-          <h1>Lorisino!</h1>
           <div>
             <h2>Favorite Cities</h2>
             <ul>
