@@ -109,5 +109,9 @@
   background-color: #d9b99b; /* Hover background color */
 }
 
-h2{
+h2 {
+  font-weight: bold !important; /* Make the text bold */
+  text-decoration: underline !important; /* Add an underline */
+  margin-top: 20px !important; /* Add top margin */
+  text-align: center !important; /* Center the text horizontally */
 }
