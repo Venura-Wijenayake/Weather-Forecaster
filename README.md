@@ -17,5 +17,6 @@ Whether you're a traveler, a commuter, or simply curious about the weather, the 
 A link to the deployed app (Heroku)
 
 A link to the Trello board: https://trello.com/b/5Hnax7U9/project-4
+
 ☐ Next Steps: I would like to expand the features of my tracker page, for example I would have like to display the timestamps for each list item and be able to do something like a comparison.
                I also wanted to work with satellite mapping API provided on openweatherAPI. This would have allowed me to display something similar to google maps but with weather data overlayed (tempreture/winds/snow).
