@@ -1,20 +1,13 @@
-# MERN-Stack Infrastructure
+#Project README.md
 
-Clone this repo to provide the starter code for a comprehensive MERN-Stack project including token-based authentication.
+App Title: Contains a description of what the app does and optional background info.
 
+☐ Screenshot(s): A screenshot of your app's landing page and any other screenshots of interest.
 
-## .env set-up
+☐ Technologies Used: List of the technologies used.
 
-create a .env file with these fields
+☐ Getting Started: That Includes:
 
-```
-DATABASE_URL=mongodb+srv://venuwije:LfuJJ3qzVqVhO5wA@venurasdb.hjaz4s8.mongodb.net/<TITLE>?retryWrites=true&w=majority   <-- My password!>
-SECRET=<>
-```
-
-
-## Starting Up the Project
-- install all needed packages with 'npm install'
-- open up two terminal tabs
-- run expess on your backend tab with 'nodemon server'
-- run the react front-end with the commnd 'npm start' on the other tab
+A link to the deployed app (Heroku)
+A link to the Trello board used for the project's planning that includes user stories, wireframes & an ERD.
+☐ Next Steps: Planned future enhancements (icebox items).
