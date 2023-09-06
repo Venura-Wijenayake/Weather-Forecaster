@@ -10,11 +10,6 @@ require('./config/database');
 
 const app = express();
 
-//TEST!!!!
-app.set('view engine', 'ejs')
-
-var city = 'Las Vegas'
-var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=271d1234d3f497eed5b1d80a07b3fcd1`;
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -32,6 +27,7 @@ const port = process.env.PORT || 3001;
 
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/favouriteCities', require('./routes/api/favouriteCities'));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX/API requests

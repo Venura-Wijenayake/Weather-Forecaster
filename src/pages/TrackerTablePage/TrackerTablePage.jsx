@@ -1,79 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar/NavBar";
+import AuthPage from "../AuthPage/AuthPage";
 import { getUser } from "../../utilities/users-service";
 import "./TrackerTablePage.css";
+import { fetchFavouriteCities } from "../../utilities/favouriteCities-api"; // Import your API function
 
 export default function TrackerTablePage() {
   const [user, setUser] = useState(getUser());
+  const [favouriteCities, setFavouriteCities] = useState([]);
 
-  // Sample weather data (you can replace it with your own data)
-  const weatherData = [
-    {
-      city: "Las Vegas",
-      temperature: 29,
-      description: "thunderstorm with heavy rain",
-      icon: "10d", // Icon code for a sunny day (you can replace it with the actual icon code)
-    },
-  ];
+  useEffect(() => {
+    // Fetch data when the component mounts
+    if (user) {
+      fetchFavouriteCities()
+        .then((data) => setFavouriteCities(data))
+        .catch((error) => console.error("Error fetching data:", error));
+    }
+  }, [user]);
 
   return (
-    <div>
-      <NavBar user={user} setUser={setUser} />
-      <section className="hero teal-banner">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title">What's the weather like?</h1>
-          </div>
+    <main className="App bg-custom-image w-full flex justify-center items-center">
+      {user ? (
+        <div
+          className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-gray-200 to-yellow-500 h-fit shadow-xl shadow-gray-400 `}
+        >
+          <NavBar user={user} setUser={setUser} />
+          <h1>Header 1</h1>
+          <h2>Header 2</h2>
+
+          {/* Display the fetched data */}
+          <ul>
+            {favouriteCities.map((city) => (
+              <li key={city._id}>
+                
+                {city.name}, Temp: {city.temp}°C
+              </li>
+            ))}
+          </ul>
         </div>
-      </section>
-      <section className="section">
-        <div className="container">
-          <div className="columns">
-            <div className="column is-offset-4 is-4">
-              <form method="POST">
-                <div className="field has-addons custom-input-group">
-                  <div className="control is-expanded">
-                    <input
-                      className="input has-border"
-                      name="city_name"
-                      type="text"
-                      placeholder="City Name"
-                    />
-                  </div>
-                  <div className="control">
-                    <button className="custom-button">Add City</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="section">
-        <div className="container">
-          <div className="columns">
-            <div className="column is-offset-4 is-4">
-              {weatherData.map((weather, index) => (
-                <div className="weather-box" key={index}>
-                  <div className="box-image">
-                    <img
-                      className="icon"
-                      src={`http://openweathermap.org/img/w/${weather.icon}.png`}
-                      alt="WeatherImage!"
-                    />
-                  </div>
-                  <div className="box-content">
-                    <p className="city-name">{weather.city}</p>
-                    <p className="temperature">{weather.temperature}° F</p>
-                    <p className="description">{weather.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      <footer className="footer"></footer>
-    </div>
+      ) : (
+        <AuthPage setUser={setUser} />
+      )}
+    </main>
   );
 }
