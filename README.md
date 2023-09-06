@@ -8,7 +8,7 @@ The application also allows users to add their favourite cities to a tracker pag
 
 Whether you're a traveler, a commuter, or simply curious about the weather, the City-Weather-Forecaster application equips you with the tools you need to make informed decisions and stay weather-ready.
 
-☐ Screenshot(s): A screenshot of your app's landing page and any other screenshots of interest.
+☐ Screenshot(s): [A screenshot of your app's landing page and any other screenshots of interest.](https://ibb.co/PQ1BFs9)
 
 ☐ Technologies Used: List of the technologies used.
 
