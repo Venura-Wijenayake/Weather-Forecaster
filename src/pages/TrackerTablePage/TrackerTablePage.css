@@ -1,0 +1,110 @@
+.teal-banner {
+    background-color: teal;
+    color: white;
+    width: 100%;
+    height: 12.5vh;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  .has-border {
+    border: 2px solid black;
+     /* 2px black outline */
+  }
+
+  .custom-input-group {
+    display: flex; /* Use Flexbox to control layout */
+    align-items: center; /* Vertically center items */
+    justify-content: center; /* Horizontally center items */
+    margin-bottom: 10px;
+  }
+  
+  /* Style for the input */
+  .input.has-border {
+    border: 2px solid black; /* 2px black outline */
+    border-radius: 5px; /* Add rounded corners */
+    padding: 10px; /* Add padding */
+    margin-right: 10px; /* Add margin to separate input and button */
+  }
+  
+  /* Style for the "Add City" button */
+  .custom-button {
+    background-color: blue; /* Blue background color */
+    color: white; /* Text color */
+    border: none; /* Remove default button border */
+    padding: 10px 20px; /* Add padding to make it look like a button */
+    border-radius: 5px; /* Add rounded corners for a button-like appearance */
+    cursor: pointer; /* Add pointer cursor on hover */
+  }
+
+/* Style for the weather data boxes */
+.weather-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  padding: 10px;
+}
+
+/* Style for the icon image */
+.box-image {
+  width: 1/6; /* Set the width of the image to 1/6 of the box */
+  padding-right: 10px; /* Add right padding to separate image and content */
+}
+
+/* Style for the city name */
+.city-name {
+  font-size: 1.5rem;
+  margin-bottom: 5px; /* Add bottom margin for spacing */
+}
+
+/* Style for the temperature */
+.temperature {
+  font-size: 1rem;
+}
+
+/* Style for the description */
+.description {
+  font-size: 0.875rem;
+}
+
+.favorite-cities-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.favorite-city-item {
+  display: flex;
+  justify-content: space-between; /* Align items to the left and right */
+  align-items: center;
+  margin-right: 8px;
+  padding: 8px 16px;
+  background-color: #2b8156; /* Button background color */
+  color: #fff; /* Button text color */
+  border: 1px solid black; /* Border with aqua color */
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-button {
+  background-color: #826F5D; /* Button background color for delete */
+  color: #000; /* Button text color */
+  border: 1px solid black; /* Border with aqua color */
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-left: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #d9b99b; /* Hover background color */
+}
