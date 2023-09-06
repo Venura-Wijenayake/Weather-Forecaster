@@ -16,7 +16,7 @@ HTML/CSS/JavaSCript/MongoDB/Express/Nodejs/React
 
 ☐ Getting Started:
 
-A link to the deployed app (Heroku)
+A link to the deployed app (Heroku) [ATTEMPTED] :using local host  --> http://localhost:3000/home
 
 A link to the Trello board: https://trello.com/b/5Hnax7U9/project-4
 
